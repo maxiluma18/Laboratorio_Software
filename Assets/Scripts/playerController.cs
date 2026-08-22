@@ -33,7 +33,10 @@ public class playerController : MonoBehaviour
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpPressed = false;
         }
-
+        if(!isGrounded)
+        {
+            jumpPressed = false;
+        }
         verticalVelocity += gravity * Time.deltaTime;
 
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
