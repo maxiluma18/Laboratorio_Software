@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -41,10 +42,12 @@ public class playerController : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
     }
 
+
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }
+
 
     public void OnJump(InputValue value)
     {
