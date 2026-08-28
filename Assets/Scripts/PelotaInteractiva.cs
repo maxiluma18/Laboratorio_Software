@@ -16,7 +16,7 @@ public class PelotaInteractiva : MonoBehaviour
     void Update()
     {
         // Si cae al vacío (más abajo de -50)
-        if (transform.position.y < -50f)
+        if (transform.position.y < -10f)
         {
             // 1. La teletransportamos al punto con Y = 0
             transform.position = puntoDeReaparicion;
