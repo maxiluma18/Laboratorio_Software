@@ -13,14 +13,12 @@ public class playerController : MonoBehaviour
     private bool jumpPressed;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         bool isGrounded = controller.isGrounded;

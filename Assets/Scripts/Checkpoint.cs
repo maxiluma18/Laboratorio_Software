@@ -2,21 +2,17 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private bool yaGuardado = false; 
-
     private void OnTriggerEnter(Collider other)
     {
-        // Verificamos que sea el jugador y que no hayamos guardado ya en este mismo plano
-        if (other.CompareTag("Player") && !yaGuardado)
+        if (other.CompareTag("Player"))
         {
             PlayerRespawn respawn = other.GetComponent<PlayerRespawn>();
             
             if (respawn != null)
             {
-                // Le pasamos la posición de este plano azul al script del jugador
+                // Guardamos el checkpoint para este jugador en específico
                 respawn.currentCheckpoint = this.transform;
-                yaGuardado = true;
-                Debug.Log("¡Progreso guardado en el plano azul!");
+                Debug.Log("¡Progreso guardado para " + other.gameObject.name + "!");
             }
         }
     }
