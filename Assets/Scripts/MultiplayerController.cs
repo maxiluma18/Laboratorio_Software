@@ -27,12 +27,18 @@ public class multiplayerController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner)
+        if (IsOwner)
         {
+            // Activamos cámara, audio e input para el jugador local
+            if (playerInput != null) playerInput.enabled = true;
+            if (playerCamera != null) playerCamera.enabled = true;
+            if (audioListener != null) audioListener.enabled = true;
+        }
+        else
+        {
+            // Desactivamos todo eso para los jugadores remotos
             if (playerInput != null) playerInput.enabled = false;
-
-            // NUEVO: Apagamos la cámara y el oído de los personajes de otros jugadores
-            if (playerCamera != null) playerCamera.enabled = (false);
+            if (playerCamera != null) playerCamera.enabled = false;
             if (audioListener != null) audioListener.enabled = false;
         }
     }
