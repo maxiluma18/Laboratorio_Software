@@ -2765,9 +2765,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 518913531}
-        m_TargetAssemblyTypeName: GestorDeRed, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 518913530}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: BotonJugarDos
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3035,9 +3035,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 518913531}
-        m_TargetAssemblyTypeName: GestorDeRed, Assembly-CSharp
-        m_MethodName: IniciarPartidaHost
+      - m_Target: {fileID: 518913530}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: BotonIniciarPartidaRed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3848,9 +3848,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 518913531}
-        m_TargetAssemblyTypeName: GestorDeRed, Assembly-CSharp
-        m_MethodName: CargarJuegoSolo
+      - m_Target: {fileID: 518913530}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: BotonJugarSolo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

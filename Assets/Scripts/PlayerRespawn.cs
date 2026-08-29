@@ -14,7 +14,6 @@ public class PlayerRespawn : MonoBehaviour
 
     void Update()
     {
-        // Si el jugador cae por debajo de -10 en el eje Y, se activa el respawn
         if (transform.position.y < limiteDeCaida)
         {
             Respawn();
@@ -25,11 +24,25 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (currentCheckpoint != null)
         {
-            // Apagamos, movemos y prendemos el motor del personaje con controller.enabled = false; para evitar problemas de colisión al moverlo
             controller.enabled = false;
-            transform.position = currentCheckpoint.position;
+            
+            // Posición base del checkpoint
+            Vector3 spawnPos = currentCheckpoint.position;
+
+            // Si es el Jugador 2, lo desplazamos un poquito a la derecha (1.5 metros) para que no se choquen
+            if (gameObject.name.Contains("2") || gameObject.name.Contains("Jugador2"))
+            {
+                spawnPos += new Vector3(1.5f, 0f, 0f);
+            }
+            else
+            {
+                // Al Jugador 1 lo corremos un poquito a la izquierda
+                spawnPos += new Vector3(-1.5f, 0f, 0f);
+            }
+
+            transform.position = spawnPos;
             controller.enabled = true;
-            Debug.Log("Caída detectada. Reapareciendo...");
+            Debug.Log("Reapareciendo separado...");
         }
     }
 }

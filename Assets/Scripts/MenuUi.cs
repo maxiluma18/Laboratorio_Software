@@ -72,4 +72,16 @@ public class MenuUI : MonoBehaviour
         txtListaJugadores.text = lista;
         if (mostrarBotonPlay) btnIniciarPartida.SetActive(true);
     }
+    public void BotonJugarDos()
+    {
+        gestorDeRed.CargarJuegoLocal();
+    }
+    public void BotonJugarSolo()
+    {
+        gestorDeRed.CargarJuegoSolo();
+    }
+    public void BotonIniciarPartidaRed()
+    {
+        gestorDeRed.IniciarPartidaHost();
+    }
 }

@@ -129,4 +129,14 @@ public class GestorDeRed : MonoBehaviour
         }
         SceneManager.LoadScene("SampleScene");
     }
+    public void CargarJuegoLocal()
+    {
+        // Si la red quedó activa por alguna prueba previa, la apagamos para modo LOCAL 
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
+        // Cargamos la escena exclusiva para 2 jugadores
+        SceneManager.LoadScene("LocalScene");
+    }
 }
