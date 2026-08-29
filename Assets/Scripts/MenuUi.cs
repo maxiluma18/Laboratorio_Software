@@ -15,8 +15,11 @@ public class MenuUI : MonoBehaviour
     public TMP_Text txtListaJugadores;
     public GameObject btnIniciarPartida;
 
+    [Header("Avisos y Errores")]
+    public GameObject txtMensajeError; // Arrastrá acá tu txt_InputVacio
+
     [Header("Lógica de Red")]
-    public GestorDeRed gestorDeRed; 
+    public GestorDeRed gestorDeRed;
 
     private void Start()
     {
@@ -33,22 +36,34 @@ public class MenuUI : MonoBehaviour
         panelCrearSala.SetActive(true);
         txtCodigoGenerado.text = "CÓDIGO: Generando...";
         btnIniciarPartida.SetActive(false);
-        
-        // Le mandamos la orden al backend de red
-        gestorDeRed.CrearSalaRelay(); 
+        gestorDeRed.CrearSalaRelay();
     }
 
     public void MostrarUnirse()
     {
         OcultarTodos();
         panelUnirse.SetActive(true);
+        if (txtMensajeError != null) txtMensajeError.SetActive(false); // Oculta al entrar
     }
 
     public void BotonConectarse()
     {
         string codigo = inputCodigo.text.Trim().ToUpper();
-        if (!string.IsNullOrEmpty(codigo))
+
+        if (string.IsNullOrEmpty(codigo))
         {
+            if (txtMensajeError != null)
+            {
+                // Si querés asegurar el texto exacto:
+                var textoComp = txtMensajeError.GetComponent<TMP_Text>();
+                if (textoComp != null) textoComp.text = "Debe ingresar un código";
+
+                txtMensajeError.SetActive(true);
+            }
+        }
+        else
+        {
+            if (txtMensajeError != null) txtMensajeError.SetActive(false);
             gestorDeRed.ConectarseASala(codigo);
         }
     }
@@ -72,16 +87,8 @@ public class MenuUI : MonoBehaviour
         txtListaJugadores.text = lista;
         if (mostrarBotonPlay) btnIniciarPartida.SetActive(true);
     }
-    public void BotonJugarDos()
-    {
-        gestorDeRed.CargarJuegoLocal();
-    }
-    public void BotonJugarSolo()
-    {
-        gestorDeRed.CargarJuegoSolo();
-    }
-    public void BotonIniciarPartidaRed()
-    {
-        gestorDeRed.IniciarPartidaHost();
-    }
+
+    public void BotonJugarDos() { gestorDeRed.CargarJuegoLocal(); }
+    public void BotonJugarSolo() { gestorDeRed.CargarJuegoSolo(); }
+    public void BotonIniciarPartidaRed() { gestorDeRed.IniciarPartidaHost(); }
 }
