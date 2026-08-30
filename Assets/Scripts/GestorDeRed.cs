@@ -92,10 +92,12 @@ public class GestorDeRed : MonoBehaviour
             );
 
             NetworkManager.Singleton.StartClient();
+            menuUI.CambiarTextoEstado("¡Correcto! Esperando al anfitrión...");
         }
         catch (RelayServiceException e)
         {
             Debug.LogError("Error al unirse: " + e.Message);
+            menuUI.CambiarTextoEstado("Error al unirse a la sala.");
         }
     }
 
