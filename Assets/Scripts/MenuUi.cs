@@ -34,7 +34,7 @@ public class MenuUI : MonoBehaviour
     {
         OcultarTodos();
         panelCrearSala.SetActive(true);
-        txtCodigoGenerado.text = "CÓDIGO: Generando...";
+        txtCodigoGenerado.text = "CÓDIGO:\nGenerando...";
         btnIniciarPartida.SetActive(false);
         gestorDeRed.CrearSalaRelay();
     }
@@ -52,18 +52,11 @@ public class MenuUI : MonoBehaviour
 
         if (string.IsNullOrEmpty(codigo))
         {
-            if (txtMensajeError != null)
-            {
-                // Si querés asegurar el texto exacto:
-                var textoComp = txtMensajeError.GetComponent<TMP_Text>();
-                if (textoComp != null) textoComp.text = "Debe ingresar un código";
-
-                txtMensajeError.SetActive(true);
-            }
+            CambiarTextoEstado("¡El código no puede estar vacío!");
         }
         else
         {
-            if (txtMensajeError != null) txtMensajeError.SetActive(false);
+            CambiarTextoEstado("Conectando...");
             gestorDeRed.ConectarseASala(codigo);
         }
     }
@@ -86,6 +79,18 @@ public class MenuUI : MonoBehaviour
     {
         txtListaJugadores.text = lista;
         if (mostrarBotonPlay) btnIniciarPartida.SetActive(true);
+    }
+
+    public void CambiarTextoEstado(string mensaje)
+    {
+        if (txtMensajeError != null)
+        {
+            TMP_Text textoComp = txtMensajeError.GetComponent<TMP_Text>();
+            if(textoComp!=null){
+                textoComp.text=mensaje;
+            }
+            txtMensajeError.SetActive(true);
+        }
     }
 
     public void BotonJugarDos() { gestorDeRed.CargarJuegoLocal(); }
