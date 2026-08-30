@@ -5,36 +5,41 @@ using UnityEngine.UIElements;
 
 public class multiplayerRespawn : NetworkBehaviour
 {
-    public Transform currentCheckpoint;
     public float limiteDeCaida = -10f;
 
     private CharacterController controller;
 
-    void Awake()
+    // Aquí guardaremos la posición exacta donde debe reaparecer el jugador
+    private Vector3 currentRespawnPos;
+
+    // Usamos OnNetworkSpawn en lugar de Start cuando trabajamos con Netcode
+    public override void OnNetworkSpawn()
     {
-        // Acá solo guardamos el controller. Ya no buscamos el mapa porque estamos en el menú.
         controller = GetComponent<CharacterController>();
+
+        // Solo el dueño calcula su posición inicial
+        if (IsOwner)
+        {
+            int playerId = (int)OwnerClientId % 4;
+            float posX = 0f;
+
+            switch (playerId)
+            {
+                case 0: posX = -1f; break;
+                case 1: posX = 0f; break;
+                case 2: posX = 1.5f; break;
+                case 3: posX = 3f; break;
+            }
+
+            // Configuramos la posición inicial como el primer "checkpoint"
+            currentRespawnPos = new Vector3(posX, 2f, -15f);
+        }
     }
 
     void Update()
     {
-        // Si este clon no es mi personaje, cortamos acá.
         if (!IsOwner) return;
 
-        // 1. EL TRUCO: Si no tenemos Checkpoint, lo buscamos.
-        // Esto va a fallar mientras estemos en el Menú, pero apenas cargue 
-        // la escena Multiplayer, lo va a encontrar y guardar para siempre.
-        if (currentCheckpoint == null)
-        {
-            GameObject objCheckpoint = GameObject.FindWithTag("Checkpoint");
-            if (objCheckpoint != null)
-            {
-                currentCheckpoint = objCheckpoint.transform;
-            }
-            return; // Cortamos el Update acá hasta que tengamos un Checkpoint
-        }
-
-        // 2. Lógica de caída original (Solo funciona si ya encontró el Checkpoint)
         if (transform.position.y < limiteDeCaida)
         {
             Respawn();
@@ -43,19 +48,29 @@ public class multiplayerRespawn : NetworkBehaviour
 
     public void Respawn()
     {
-        if (currentCheckpoint != null)
+        controller.enabled = false;
+
+        // Lo movemos a la posición guardada (la inicial o la del último checkpoint)
+        transform.position = currentRespawnPos;
+
+        controller.enabled = true;
+
+        Debug.Log($"Reapareciendo en la posición {currentRespawnPos}");
+    }
+
+    // Detectamos cuando el jugador pisa un nuevo checkpoint
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!IsOwner) return;
+
+        // Verifica si el objeto contra el que chocamos tiene la etiqueta "Checkpoint"
+        if (other.CompareTag("Checkpoint"))
         {
-            controller.enabled = false;
-            transform.position = currentCheckpoint.position;
+            // Actualizamos la posición de reaparición. 
+            // Le sumamos 2 en Y para asegurarnos de que no aparezca atascado en el piso
+            currentRespawnPos = other.transform.position + new Vector3(0f, 2f, 0f);
 
-            var networkTransform = GetComponent<Unity.Netcode.Components.NetworkTransform>();
-            if (networkTransform != null)
-            {
-                networkTransform.Teleport(transform.position, transform.rotation, transform.localScale);
-            }
-
-            controller.enabled = true;
-            Debug.Log("Caída detectada. Reapareciendo...");
+            Debug.Log($"¡Checkpoint alcanzado! Nueva posición guardada: {currentRespawnPos}");
         }
     }
 }
