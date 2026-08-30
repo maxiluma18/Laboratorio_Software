@@ -1,7 +1,6 @@
-using System.Globalization;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
 public class multiplayerController : NetworkBehaviour
 {
@@ -9,35 +8,34 @@ public class multiplayerController : NetworkBehaviour
     public float gravity = -20f;
     public float jumpHeight = 2f;
 
-    // NUEVO: Variables para controlar la cámara y el audio
     public Camera playerCamera;
     public AudioListener audioListener;
 
+    [Header("Asignación de Teclas")]
+    public InputActionReference accionMover;
+    public InputActionReference accionSaltar;
+
     private CharacterController controller;
-    private PlayerInput playerInput;
-    private Vector2 moveInput;
     private float verticalVelocity;
-    private bool jumpPressed;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        playerInput = GetComponent<PlayerInput>();
     }
 
     public override void OnNetworkSpawn()
     {
         if (IsOwner)
         {
-            // Activamos cámara, audio e input para el jugador local
-            if (playerInput != null) playerInput.enabled = true;
             if (playerCamera != null) playerCamera.enabled = true;
             if (audioListener != null) audioListener.enabled = true;
+
+            // Habilitamos las teclas SOLO para el dueño de este personaje
+            if (accionMover != null) accionMover.action.Enable();
+            if (accionSaltar != null) accionSaltar.action.Enable();
         }
         else
         {
-            // Desactivamos todo eso para los jugadores remotos
-            if (playerInput != null) playerInput.enabled = false;
             if (playerCamera != null) playerCamera.enabled = false;
             if (audioListener != null) audioListener.enabled = false;
         }
@@ -45,42 +43,30 @@ public class multiplayerController : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner) return;
+        if (!IsOwner) return; // Si no es tuyo, no se mueve
 
         bool isGrounded = controller.isGrounded;
         if (isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
         }
-        if (jumpPressed && isGrounded)
+
+        if (accionSaltar != null && accionSaltar.action.WasPressedThisFrame() && isGrounded)
         {
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            jumpPressed = false;
         }
-        if (!isGrounded)
-        {
-            jumpPressed = false;
-        }
+
         verticalVelocity += gravity * Time.deltaTime;
+
+        Vector2 moveInput = Vector2.zero;
+        if (accionMover != null)
+        {
+            moveInput = accionMover.action.ReadValue<Vector2>();
+        }
 
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
         move.y = verticalVelocity / speed;
 
         controller.Move(move * speed * Time.deltaTime);
-    }
-
-    public void OnMove(InputValue value)
-    {
-        if (!IsOwner) return;
-        moveInput = value.Get<Vector2>();
-    }
-
-    public void OnJump(InputValue value)
-    {
-        if (!IsOwner) return;
-        if (value.isPressed)
-        {
-            jumpPressed = true;
-        }
     }
 }
