@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using Unity.Netcode;               // <-- Agregá esto para que reconozca el NetworkManager
+using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
@@ -27,8 +29,33 @@ public class MenuUI : MonoBehaviour
     }
 
     // --- Navegación de Paneles ---
-    public void MostrarMenuPrincipal() { OcultarTodos(); panelMenuPrincipal.SetActive(true); }
-    public void MostrarMultijugador() { OcultarTodos(); panelMultijugador.SetActive(true); }
+    public void MostrarMenuPrincipal()
+    { 
+        // Si hay una conexión fantasma o a medias, reiniciamos la escena de raíz
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+        {
+            NetworkManager.Singleton.Shutdown();
+            Destroy(NetworkManager.Singleton.gameObject);
+            SceneManager.LoadScene("MainMenu");
+            return;
+        }
+
+        OcultarTodos(); 
+        panelMenuPrincipal.SetActive(true);
+    }
+    public void MostrarMultijugador()
+    { 
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+        {
+            NetworkManager.Singleton.Shutdown();
+            Destroy(NetworkManager.Singleton.gameObject);
+            SceneManager.LoadScene("MainMenu");
+            return;
+        }
+
+        OcultarTodos(); 
+        panelMultijugador.SetActive(true);
+    }
 
     public void MostrarCrearSala()
     {
