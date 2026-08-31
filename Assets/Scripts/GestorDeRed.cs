@@ -92,7 +92,16 @@ public class GestorDeRed : MonoBehaviour
             );
 
             NetworkManager.Singleton.StartClient();
-            menuUI.CambiarTextoEstado("¡Correcto! Esperando al anfitrión...");
+            await Task.Delay(3000); // Filtro contra salas fantasmas. Espera 3 segundos.
+            if (!NetworkManager.Singleton.IsConnectedClient)
+            {
+                NetworkManager.Singleton.Shutdown();
+                menuUI.CambiarTextoEstado("Error: La sala ya no existe.");
+            }
+            else
+            {
+                menuUI.CambiarTextoEstado("¡Correcto! Esperando al anfitrión...");
+            }
         }
         catch (RelayServiceException e)
         {
@@ -140,5 +149,13 @@ public class GestorDeRed : MonoBehaviour
         }
         // Cargamos la escena exclusiva para 2 jugadores
         SceneManager.LoadScene("LocalScene");
+    }
+    public void DesconectarDeSala()
+    {
+        // Si la red está prendida (ya sea como host o cliente), la apagamos
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
     }
 }
