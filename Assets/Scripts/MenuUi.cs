@@ -10,6 +10,7 @@ public class MenuUI : MonoBehaviour
     public GameObject panelMultijugador;
     public GameObject panelCrearSala;
     public GameObject panelUnirse;
+    public GameObject panelDificultad;
 
     [Header("Componentes de Sala y Lobby")]
     public TMP_InputField inputCodigo;
@@ -94,6 +95,7 @@ public class MenuUI : MonoBehaviour
         panelMultijugador.SetActive(false);
         panelCrearSala.SetActive(false);
         panelUnirse.SetActive(false);
+        panelDificultad.SetActive(false);
     }
 
     // --- Funciones para que la Red actualice la UI ---
@@ -122,5 +124,22 @@ public class MenuUI : MonoBehaviour
 
     public void BotonJugarDos() { gestorDeRed.CargarJuegoLocal(); }
     public void BotonJugarSolo() { gestorDeRed.CargarJuegoSolo(); }
+    // Se ejecuta al tocar "Un jugador" en el menú principal
+    public void MostrarPanelDificultad()
+    {
+        OcultarTodos();
+        panelDificultad.SetActive(true);
+    }
+
+    // Método para guardar la dificultad elegida (1=Facil, 2=Medio, 3=Dificil) e iniciar el juego
+    public void SeleccionarDificultadYJugar(int nivelDificultad)
+    {
+        // Acá guardás el valor globalmente (ej: usando PlayerPrefs o tu gestor)
+        PlayerPrefs.SetInt("DificultadSeleccionada", nivelDificultad);
+        PlayerPrefs.Save();
+
+        // Llamás a tu función existente para cargar el juego solo
+        BotonJugarSolo();
+    }
     public void BotonIniciarPartidaRed() { gestorDeRed.IniciarPartidaHost(); }
 }
