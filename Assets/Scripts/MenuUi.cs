@@ -31,6 +31,17 @@ public class MenuUI : MonoBehaviour
     {
         Debug.Log("Cerrando el juego...");
         MostrarMenuPrincipal();
+        if (txtBotonMute != null)
+        {
+            if (AudioListener.volume > 0f)
+            {
+                txtBotonMute.text = "Silenciar Música";
+            }
+            else
+            {
+                txtBotonMute.text = "Activar Música";
+            }
+        }
     }
     
     public void CerrarJuego()

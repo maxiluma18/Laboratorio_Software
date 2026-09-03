@@ -11,7 +11,7 @@ using Unity.Netcode.Transports.UTP;
 public class GestorDeRed : MonoBehaviour
 {
     [Header("Interfaz Gráfica")]
-    public MenuUI menuUI; // <-- Enchufe a la pantalla
+    public MenuUI menuUI; 
 
     private async void Start()
     {
@@ -92,7 +92,7 @@ public class GestorDeRed : MonoBehaviour
             );
 
             NetworkManager.Singleton.StartClient();
-            await Task.Delay(3000); // Filtro contra salas fantasmas. Espera 3 segundos.
+            await Task.Delay(3000); // Filtro contra salas fantasmas. Esperamos 3 segundos.
             if (!NetworkManager.Singleton.IsConnectedClient)
             {
                 NetworkManager.Singleton.Shutdown();
