@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    private bool progresoGuardado = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!progresoGuardado && other.CompareTag("Player"))
         {
             PlayerRespawn respawn = other.GetComponent<PlayerRespawn>();
             
@@ -13,6 +14,7 @@ public class Checkpoint : MonoBehaviour
                 // Guardamos el checkpoint para este jugador en específico
                 respawn.currentCheckpoint = this.transform;
                 Debug.Log("¡Progreso guardado para " + other.gameObject.name + "!");
+                progresoGuardado = true;
             }
         }
     }

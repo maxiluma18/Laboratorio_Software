@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerRespawn : MonoBehaviour
 {
     public Transform currentCheckpoint; 
-    public float limiteDeCaida = -10f; 
+    public float limiteDeCaida = -10f;
     
     private CharacterController controller;
 
