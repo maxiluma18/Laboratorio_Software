@@ -8,7 +8,8 @@ public class ControladorPausa : MonoBehaviour
     [Header("UI de Pausa")]
     public GameObject panelPausa;
     public TMP_Text txtBotonMute;
-
+    public GameObject panelAyuda; 
+    public TMP_Text txtBotonAyuda;
     private bool panelActivo = false;
 
     void Update()
@@ -51,7 +52,6 @@ public class ControladorPausa : MonoBehaviour
 
     public void BotonSalirAlMenu()
     {
-        
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
         {
             NetworkManager.Singleton.Shutdown();
@@ -72,6 +72,27 @@ public class ControladorPausa : MonoBehaviour
         {
             AudioListener.volume = 1f;
             if (txtBotonMute != null) txtBotonMute.text = "Silenciar Música";
+        }
+    }
+
+    public void AlternarPanelAyuda()
+    {
+        if (panelAyuda != null)
+        {
+            bool estabaApagado = !panelAyuda.activeSelf;
+            
+            panelAyuda.SetActive(estabaApagado);
+            if (txtBotonAyuda != null)
+            {
+                if (estabaApagado)
+                {
+                    txtBotonAyuda.text = "Cerrar ayuda";
+                }
+                else
+                {
+                    txtBotonAyuda.text = "Ayuda";
+                }
+            }
         }
     }
 }
