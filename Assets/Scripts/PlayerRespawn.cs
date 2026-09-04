@@ -4,7 +4,10 @@ public class PlayerRespawn : MonoBehaviour
 {
     public Transform currentCheckpoint; 
     public float limiteDeCaida = -10f;
-    
+    public AudioSource sonidoCaida;
+    public AudioSource sonidoDerrota;
+    public int caidas = 0;
+
     private CharacterController controller;
 
     void Start()
@@ -24,6 +27,8 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (currentCheckpoint != null)
         {
+            sonidoCaida.Stop();
+
             controller.enabled = false;
             
             // Posición base del checkpoint
