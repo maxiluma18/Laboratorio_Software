@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using Unity.Netcode;               // <-- Agregá esto para que reconozca el NetworkManager
+using Unity.Netcode;               
 using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
@@ -19,14 +19,34 @@ public class MenuUI : MonoBehaviour
     public GameObject btnIniciarPartida;
 
     [Header("Avisos y Errores")]
-    public GameObject txtMensajeError; // Arrastrá acá tu txt_InputVacio
+    public GameObject txtMensajeError;
 
     [Header("Lógica de Red")]
     public GestorDeRed gestorDeRed;
 
+    [Header("Configuración de Audio")]
+    public TMP_Text txtBotonMute;
+    
     private void Start()
     {
+        Debug.Log("Cerrando el juego...");
         MostrarMenuPrincipal();
+        if (txtBotonMute != null)
+        {
+            if (AudioListener.volume > 0f)
+            {
+                txtBotonMute.text = "Silenciar Música";
+            }
+            else
+            {
+                txtBotonMute.text = "Activar Música";
+            }
+        }
+    }
+    
+    public void CerrarJuego()
+    {
+        Application.Quit(); // Se cierra el juego por completo (antes era alt+f4)
     }
 
     // --- Navegación de Paneles ---
@@ -122,8 +142,14 @@ public class MenuUI : MonoBehaviour
         }
     }
 
-    public void BotonJugarDos() { gestorDeRed.CargarJuegoLocal(); }
-    public void BotonJugarSolo() { gestorDeRed.CargarJuegoSolo(); }
+    public void BotonJugarDos()
+    { 
+        gestorDeRed.CargarJuegoLocal(); 
+    }
+    public void BotonJugarSolo() 
+    { 
+        gestorDeRed.CargarJuegoSolo(); 
+    }
     // Se ejecuta al tocar "Un jugador" en el menú principal
     public void MostrarPanelDificultad()
     {
@@ -134,12 +160,34 @@ public class MenuUI : MonoBehaviour
     // Método para guardar la dificultad elegida (1=Facil, 2=Medio, 3=Dificil) e iniciar el juego
     public void SeleccionarDificultadYJugar(int nivelDificultad)
     {
-        // Acá guardás el valor globalmente (ej: usando PlayerPrefs o tu gestor)
         PlayerPrefs.SetInt("DificultadSeleccionada", nivelDificultad);
         PlayerPrefs.Save();
 
-        // Llamás a tu función existente para cargar el juego solo
         BotonJugarSolo();
     }
-    public void BotonIniciarPartidaRed() { gestorDeRed.IniciarPartidaHost(); }
+
+    public void BotonIniciarPartidaRed() 
+    { 
+        gestorDeRed.IniciarPartidaHost(); 
+    }
+
+
+
+
+
+    
+    
+    public void ModificarVolumenMusica()
+    {
+        if (AudioListener.volume > 0f)
+        {
+            AudioListener.volume = 0f;
+            if (txtBotonMute != null) txtBotonMute.text = "Activar Música";
+        }
+        else
+        {
+            AudioListener.volume = 1f;
+            if (txtBotonMute != null) txtBotonMute.text = "Silenciar Música";
+        }
+    }
 }
