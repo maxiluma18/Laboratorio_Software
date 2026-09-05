@@ -6,11 +6,13 @@ public class PlayerRespawn : MonoBehaviour
     public Transform currentCheckpoint; 
     public float limiteDeCaida = -10f;
 
+
     [Header("Sistema de Vidas")]
     public int vidasActuales; // Puedes ver cuántas vidas le quedan en el Inspector
 
     [Header("UI de Game Over")]
     public GameObject panelGameOver; // Arrastraremos el panel aquí
+
 
     private CharacterController controller;
 
@@ -125,6 +127,8 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (currentCheckpoint != null)
         {
+            sonidoCaida.Stop();
+
             controller.enabled = false;
 
             Vector3 spawnPos = currentCheckpoint.position;

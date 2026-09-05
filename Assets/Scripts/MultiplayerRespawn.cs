@@ -6,7 +6,9 @@ using UnityEngine.UIElements;
 public class multiplayerRespawn : NetworkBehaviour
 {
     public float limiteDeCaida = -10f;
-
+    public AudioSource sonidoCaida;
+    public AudioSource sonidoDerrota;
+    public int caidas = 0;
     private CharacterController controller;
 
     // Aquí guardaremos la posición exacta donde debe reaparecer el jugador
@@ -48,6 +50,8 @@ public class multiplayerRespawn : NetworkBehaviour
 
     public void Respawn()
     {
+        sonidoCaida.Stop();
+
         controller.enabled = false;
 
         // Lo movemos a la posición guardada (la inicial o la del último checkpoint)
