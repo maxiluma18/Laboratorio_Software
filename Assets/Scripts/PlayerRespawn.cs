@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerRespawn : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class PlayerRespawn : MonoBehaviour
     public float limiteDeCaida = -10f;
 
     [Header("Sistema de Vidas")]
-    public int vidasActuales; 
+    public int vidasActuales;
+    public TMP_Text textoVidas;
 
     [Header("UI de Game Over")]
     public GameObject panelGameOver;
@@ -21,9 +23,17 @@ public class PlayerRespawn : MonoBehaviour
     private CharacterController controller;
     private bool juegoTerminado = false;
 
+
+    // Variable para saber en qué modo estamos
+    private bool esMultijugador = false;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        // Si no existe la clave, por defecto asume 0 (Un solo jugador)
+        esMultijugador = PlayerPrefs.GetInt("ModoMultijugador", 0) == 1;
+
         ConfigurarVidasIniciales();
         controller.enabled = true;
 
@@ -37,6 +47,15 @@ public class PlayerRespawn : MonoBehaviour
 
     private void ConfigurarVidasIniciales()
     {
+
+        if (esMultijugador)
+        {
+            // En multijugador, las vidas son infinitas
+            if (textoVidas != null) textoVidas.text = "Vidas: ∞";
+            Debug.Log($"{gameObject.name} inicia en modo Multijugador (Vidas Infinitas)");
+            return; // Salimos para no aplicar la lógica de dificultad
+        }
+
         // Leemos la dificultad que guardó tu otro script. 
         // Si no encuentra nada, pone "2" (Medio) por defecto.
         int dificultad = PlayerPrefs.GetInt("DificultadSeleccionada", 2);
@@ -54,6 +73,7 @@ public class PlayerRespawn : MonoBehaviour
                 break;
         }
 
+        ActualizarTextoVidas();
         Debug.Log($"{gameObject.name} inicia con {vidasActuales} vidas (Dificultad: {dificultad})");
     }
 
@@ -96,7 +116,17 @@ public class PlayerRespawn : MonoBehaviour
     
     private void PerderVida()
     {
+        // Si es multijugador, solo reaparece sin restar vidas
+        if (esMultijugador)
+        {
+            Debug.Log($"¡{gameObject.name} cayó o tocó una trampa! Reapareciendo (Vidas Infinitas)...");
+            if (sfxMuerte != null) sfxMuerte.Play();
+            Respawn();
+            return;
+        }
+
         vidasActuales--;
+        ActualizarTextoVidas();
         Debug.Log($"¡{gameObject.name} perdió una vida! Le quedan {vidasActuales}");
 
         if (vidasActuales > 0)
@@ -111,8 +141,18 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
-    private void MuerteDefinitiva()
+    private void ActualizarTextoVidas()
     {
+        if (textoVidas != null)
+        {
+            textoVidas.text = "Vidas: " + vidasActuales;
+        }
+    }
+
+    public void MuerteDefinitiva()
+    {
+        if (juegoTerminado) return; // Evita que se ejecute dos veces
+
         juegoTerminado = true;
         Debug.Log($"¡GAME OVER para {gameObject.name}!");
         if (musicaAmbiente != null) 
@@ -133,6 +173,19 @@ public class PlayerRespawn : MonoBehaviour
         if (controller != null)
         {
             controller.enabled = false;
+        }
+
+        if (esMultijugador)
+        {
+            PlayerRespawn[] todosLosJugadores = FindObjectsByType<PlayerRespawn>();
+            foreach (PlayerRespawn jugador in todosLosJugadores)
+            {
+                // Si el jugador encontrado NO es este jugador, lo hacemos perder
+                if (jugador != this)
+                {
+                    jugador.MuerteDefinitiva();
+                }
+            }
         }
     }
 

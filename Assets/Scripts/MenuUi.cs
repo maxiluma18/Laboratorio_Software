@@ -143,11 +143,13 @@ public class MenuUI : MonoBehaviour
     }
 
     public void BotonJugarDos()
-    { 
+    {
+        PlayerPrefs.SetInt("ModoMultijugador", 1);
         gestorDeRed.CargarJuegoLocal(); 
     }
     public void BotonJugarSolo() 
-    { 
+    {
+        PlayerPrefs.SetInt("ModoMultijugador", 0);
         gestorDeRed.CargarJuegoSolo(); 
     }
     // Se ejecuta al tocar "Un jugador" en el menú principal
