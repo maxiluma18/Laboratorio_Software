@@ -7,10 +7,11 @@ public class PlayerRespawn : MonoBehaviour
     public float limiteDeCaida = -10f;
 
     [Header("Sistema de Vidas")]
-    public int vidasActuales; // Puedes ver cuántas vidas le quedan en el Inspector
+    public int vidasActuales; 
 
     [Header("UI de Game Over")]
-    public GameObject panelGameOver; // Arrastraremos el panel aquí
+    public GameObject panelGameOver;
+    public GameObject panelVictoria;
 
     private CharacterController controller;
 
@@ -19,11 +20,12 @@ public class PlayerRespawn : MonoBehaviour
         controller = GetComponent<CharacterController>();
         ConfigurarVidasIniciales();
 
-        // Nos aseguramos de que el panel de Game Over empiece apagado
+        // Nos aseguramos de que el panel de Game Over y victoria empiece apagado
         if (panelGameOver != null)
         {
             panelGameOver.SetActive(false);
         }
+        if (panelVictoria != null) panelVictoria.SetActive(false);
     }
 
     private void ConfigurarVidasIniciales()
@@ -34,13 +36,13 @@ public class PlayerRespawn : MonoBehaviour
 
         switch (dificultad)
         {
-            case 1: // Fácil
+            case 1: 
                 vidasActuales = 10;
                 break;
-            case 2: // Medio
+            case 2: 
                 vidasActuales = 5;
                 break;
-            case 3: // Difícil
+            case 3: 
                 vidasActuales = 3;
                 break;
         }
@@ -62,6 +64,11 @@ public class PlayerRespawn : MonoBehaviour
         {
             PerderVida();
         }
+
+        else if (other.CompareTag("meta"))
+        {
+            Victoria();
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -70,22 +77,25 @@ public class PlayerRespawn : MonoBehaviour
         {
             PerderVida();
         }
+
+        else if (hit.gameObject.CompareTag("meta"))
+        {
+            Victoria();
+        }
     }
 
-    // --- NUEVA LÓGICA DE VIDAS ---
+    
     private void PerderVida()
     {
-        vidasActuales--; // Restamos 1 a las vidas
+        vidasActuales--;
         Debug.Log($"¡{gameObject.name} perdió una vida! Le quedan {vidasActuales}");
 
         if (vidasActuales > 0)
         {
-            // Si aún le quedan vidas, reaparece normal
             Respawn();
         }
         else
         {
-            // Si llegó a 0, pierde
             MuerteDefinitiva();
         }
     }
@@ -94,32 +104,40 @@ public class PlayerRespawn : MonoBehaviour
     {
         Debug.Log($"¡GAME OVER para {gameObject.name}!");
 
-        // 1. Mostramos el panel de Game Over
         if (panelGameOver != null)
         {
             panelGameOver.SetActive(true);
         }
 
-        // 2. Apagamos el CharacterController para que no se pueda mover más
         if (controller != null)
         {
             controller.enabled = false;
         }
 
-        // 3. Opcional: Pausamos el tiempo del juego para que todo se detenga
         Time.timeScale = 0f;
     }
 
-    // --- NUEVA FUNCIÓN PARA EL BOTÓN ---
+    private void Victoria()
+    {
+        Debug.Log("¡Llegaste a la meta!");
+
+        // Mostramos el panel de victoria
+        if (panelVictoria != null)
+        {
+            panelVictoria.SetActive(true);
+        }
+
+        // Apagamos el movimiento y pausamos el tiempo
+        if (controller != null) controller.enabled = false;
+        Time.timeScale = 0f;
+    }
+
     public void VolverAlMenu()
     {
-        // Restauramos el tiempo a la normalidad antes de cambiar de escena
         Time.timeScale = 1f;
-
-        // Cargamos la escena del menú principal (asegúrate de que se llame exactamente así)
         SceneManager.LoadScene("MainMenu");
     }
-    // -----------------------------
+    
 
     public void Respawn()
     {
