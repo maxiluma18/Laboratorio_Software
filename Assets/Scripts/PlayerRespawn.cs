@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement; // <-- NECESARIO PARA CAMBIAR DE ESCENA
 
@@ -7,7 +8,8 @@ public class PlayerRespawn : MonoBehaviour
     public float limiteDeCaida = -10f;
 
     [Header("Sistema de Vidas")]
-    public int vidasActuales; 
+    public int vidasActuales;
+    public TMP_Text textoVidas;
 
     [Header("UI de Game Over")]
     public GameObject panelGameOver;
@@ -46,6 +48,8 @@ public class PlayerRespawn : MonoBehaviour
                 vidasActuales = 3;
                 break;
         }
+
+        ActualizarTextoVidas();
 
         Debug.Log($"{gameObject.name} inicia con {vidasActuales} vidas (Dificultad: {dificultad})");
     }
@@ -88,6 +92,7 @@ public class PlayerRespawn : MonoBehaviour
     private void PerderVida()
     {
         vidasActuales--;
+        ActualizarTextoVidas();
         Debug.Log($"¡{gameObject.name} perdió una vida! Le quedan {vidasActuales}");
 
         if (vidasActuales > 0)
@@ -97,6 +102,14 @@ public class PlayerRespawn : MonoBehaviour
         else
         {
             MuerteDefinitiva();
+        }
+    }
+
+    private void ActualizarTextoVidas()
+    {
+        if (textoVidas != null)
+        {
+            textoVidas.text = "Vidas: " + vidasActuales;
         }
     }
 
