@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // <-- NECESARIO PARA CAMBIAR DE ESCENA
+using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour
 {
@@ -13,12 +13,19 @@ public class PlayerRespawn : MonoBehaviour
     public GameObject panelGameOver;
     public GameObject panelVictoria;
 
+    public AudioSource sfxMuerte;
+    public AudioSource sfxVictoria;
+    public AudioSource sfxDerrota;
+    public AudioSource musicaAmbiente;
+
     private CharacterController controller;
+    private bool juegoTerminado = false;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         ConfigurarVidasIniciales();
+        controller.enabled = true;
 
         // Nos aseguramos de que el panel de Game Over y victoria empiece apagado
         if (panelGameOver != null)
@@ -52,7 +59,7 @@ public class PlayerRespawn : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < limiteDeCaida)
+        if (transform.position.y < limiteDeCaida && !juegoTerminado)
         {
             PerderVida();
         }
@@ -60,6 +67,7 @@ public class PlayerRespawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (juegoTerminado) return;
         if (other.CompareTag("trampa"))
         {
             PerderVida();
@@ -73,6 +81,7 @@ public class PlayerRespawn : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (juegoTerminado) return;
         if (hit.gameObject.CompareTag("trampa"))
         {
             PerderVida();
@@ -92,17 +101,29 @@ public class PlayerRespawn : MonoBehaviour
 
         if (vidasActuales > 0)
         {
+            if (sfxMuerte != null) sfxMuerte.Play();
             Respawn();
         }
         else
         {
+            if (sfxMuerte != null) sfxMuerte.Stop();
             MuerteDefinitiva();
         }
     }
 
     private void MuerteDefinitiva()
     {
+        juegoTerminado = true;
         Debug.Log($"¡GAME OVER para {gameObject.name}!");
+        if (musicaAmbiente != null) 
+        {
+            musicaAmbiente.Stop();
+        }
+        if (sfxDerrota != null) 
+        {
+            sfxDerrota.Play();
+        }
+
 
         if (panelGameOver != null)
         {
@@ -113,13 +134,20 @@ public class PlayerRespawn : MonoBehaviour
         {
             controller.enabled = false;
         }
-
-        Time.timeScale = 0f;
     }
 
     private void Victoria()
     {
+        juegoTerminado = true;
         Debug.Log("¡Llegaste a la meta!");
+        if (musicaAmbiente != null) 
+        {
+            musicaAmbiente.Stop();
+        }
+        if (sfxVictoria != null) 
+        {
+            sfxVictoria.Play();
+        }
 
         // Mostramos el panel de victoria
         if (panelVictoria != null)
@@ -129,15 +157,7 @@ public class PlayerRespawn : MonoBehaviour
 
         // Apagamos el movimiento y pausamos el tiempo
         if (controller != null) controller.enabled = false;
-        Time.timeScale = 0f;
     }
-
-    public void VolverAlMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
-    }
-    
 
     public void Respawn()
     {
