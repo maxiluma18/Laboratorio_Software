@@ -58,7 +58,7 @@ public class multiplayerRespawn : NetworkBehaviour
         Debug.Log($"Reapareciendo en la posición {currentRespawnPos}");
     }
 
-    // Detectamos cuando el jugador pisa un nuevo checkpoint
+    // Detectamos cuando el jugador pisa un nuevo checkpoint o una trampa (si es Trigger)
     private void OnTriggerEnter(Collider other)
     {
         if (!IsOwner) return;
@@ -71,6 +71,22 @@ public class multiplayerRespawn : NetworkBehaviour
             currentRespawnPos = other.transform.position + new Vector3(0f, 2f, 0f);
 
             Debug.Log($"¡Checkpoint alcanzado! Nueva posición guardada: {currentRespawnPos}");
+        }
+        // Verifica si tocamos una trampa
+        else if (other.CompareTag("trampa"))
+        {
+            Respawn();
+        }
+    }
+
+    // Detectamos si el jugador choca contra una trampa (si es un objeto sólido normal)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!IsOwner) return;
+
+        if (hit.gameObject.CompareTag("trampa"))
+        {
+            Respawn();
         }
     }
 }

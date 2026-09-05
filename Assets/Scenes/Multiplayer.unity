@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 1851567}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 3642559}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,7 +280,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 20627445}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +392,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 26567257}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,7 +504,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 26991193}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -616,7 +616,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 87644887}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -956,7 +956,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 117846551}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1292,7 +1292,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1369,7 +1369,7 @@ GameObject:
   - component: {fileID: 146950383}
   m_Layer: 0
   m_Name: Barrera
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1404,7 +1404,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2256,7 +2256,7 @@ GameObject:
   - component: {fileID: 347911555}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2291,7 +2291,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2759,7 +2759,7 @@ GameObject:
   - component: {fileID: 460859403}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2794,7 +2794,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2871,7 +2871,7 @@ GameObject:
   - component: {fileID: 491257461}
   m_Layer: 0
   m_Name: Barrera (8)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2906,7 +2906,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3232,7 +3232,7 @@ GameObject:
   - component: {fileID: 535850561}
   m_Layer: 0
   m_Name: Barrera (1)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3267,7 +3267,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3458,7 +3458,7 @@ GameObject:
   - component: {fileID: 645867581}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3493,7 +3493,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4652,7 +4652,7 @@ GameObject:
   - component: {fileID: 807367848}
   m_Layer: 0
   m_Name: Barrera (7)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4687,7 +4687,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 813339902}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4801,7 +4801,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5205,7 +5205,7 @@ GameObject:
   - component: {fileID: 903689483}
   m_Layer: 0
   m_Name: Barrera (2)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5240,7 +5240,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5395,7 +5395,7 @@ GameObject:
   - component: {fileID: 926666817}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5430,7 +5430,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6246,7 +6246,7 @@ GameObject:
   - component: {fileID: 1085103938}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6281,7 +6281,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6586,7 +6586,7 @@ GameObject:
   - component: {fileID: 1132821020}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6621,7 +6621,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6812,7 +6812,7 @@ GameObject:
   - component: {fileID: 1278463359}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6847,7 +6847,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7038,7 +7038,7 @@ GameObject:
   - component: {fileID: 1375846203}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7073,7 +7073,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8013,7 +8013,7 @@ GameObject:
   - component: {fileID: 1531396645}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8048,7 +8048,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8125,7 +8125,7 @@ GameObject:
   - component: {fileID: 1540961953}
   m_Layer: 0
   m_Name: Barrera (5)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8160,7 +8160,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8351,7 +8351,7 @@ GameObject:
   - component: {fileID: 1588786897}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8386,7 +8386,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8463,7 +8463,7 @@ GameObject:
   - component: {fileID: 1592851888}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8498,7 +8498,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8824,7 +8824,7 @@ GameObject:
   - component: {fileID: 1697434607}
   m_Layer: 0
   m_Name: Barrera (4)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8859,7 +8859,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -9052,7 +9052,7 @@ GameObject:
   - component: {fileID: 1714503310}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9087,7 +9087,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9278,7 +9278,7 @@ GameObject:
   - component: {fileID: 1766834875}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9313,7 +9313,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9390,7 +9390,7 @@ GameObject:
   - component: {fileID: 1814583159}
   m_Layer: 0
   m_Name: MangoMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9425,7 +9425,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10079,7 +10079,7 @@ GameObject:
   - component: {fileID: 1955461922}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10114,7 +10114,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10272,7 +10272,7 @@ GameObject:
   - component: {fileID: 1973463986}
   m_Layer: 0
   m_Name: Barrera (6)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10307,7 +10307,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -10713,7 +10713,7 @@ GameObject:
   - component: {fileID: 2082303955}
   m_Layer: 0
   m_Name: CabezaMartillo
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10748,7 +10748,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10962,7 +10962,7 @@ GameObject:
   - component: {fileID: 2089857244}
   m_Layer: 0
   m_Name: Barrera (3)
-  m_TagString: Untagged
+  m_TagString: trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10997,7 +10997,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
