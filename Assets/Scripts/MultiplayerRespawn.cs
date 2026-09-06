@@ -18,10 +18,11 @@ public class multiplayerRespawn : NetworkBehaviour
     public AudioSource sfxMuerte;
     public AudioSource sfxVictoria;
     public AudioSource sfxDerrota;
-    public AudioSource musicaAmbiente;
 
     // Guardamos la posición exacta donde debe reaparecer el jugador
     private Vector3 currentRespawnPos;
+    private float miOffsetEnX = 0f;
+
 
     // Bandera local para evitar que el jugador siga interactuando tras terminar
     private bool carreraTerminada = false;
@@ -48,21 +49,50 @@ public class multiplayerRespawn : NetworkBehaviour
 
             switch (playerId)
             {
-                case 0: posX = -1f; break;
-                case 1: posX = 0f; break;
-                case 2: posX = 1.5f; break;
-                case 3: posX = 3f; break;
+                case 0: posX = -1.5f;
+                miOffsetEnX = posX;
+                break;
+                case 1: posX = 0f;
+                miOffsetEnX = posX; 
+                break;
+                case 2: posX = 1.5f; 
+                miOffsetEnX = posX;
+                break;
+                case 3: posX = 3f; 
+                miOffsetEnX = posX;
+                break;
             }
 
             // Configuramos la posición inicial como el primer "checkpoint"
-            currentRespawnPos = new Vector3(posX, 2f, -15f);
+            currentRespawnPos = new Vector3(miOffsetEnX, 2f, -15f);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Multiplayer" && IsOwner)
+        {
+            controller.enabled = false;
+            transform.position = currentRespawnPos; // Lo ubicamos en su carril
+            controller.enabled = true; // Reactivamos físicas
+        }
+    }
+    public override void OnNetworkDespawn()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void Update()
     {
         if (!IsOwner || carreraTerminada) return;
 
+        if (SceneManager.GetActiveScene().name != "Multiplayer") return;
+        
         if (transform.position.y < limiteDeCaida)
         {
             Respawn();
@@ -77,6 +107,7 @@ public class multiplayerRespawn : NetworkBehaviour
         transform.position = currentRespawnPos;
 
         controller.enabled = true;
+        if (sfxMuerte != null) sfxMuerte.Play();
 
         Debug.Log($"Reapareciendo en la posición {currentRespawnPos}");
     }
@@ -88,7 +119,7 @@ public class multiplayerRespawn : NetworkBehaviour
 
         if (other.CompareTag("Checkpoint"))
         {
-            currentRespawnPos = other.transform.position + new Vector3(0f, 2f, 0f);
+            currentRespawnPos = other.transform.position + new Vector3(miOffsetEnX, 2f, 0f);
 
             Debug.Log($"¡Checkpoint alcanzado! Nueva posición guardada: {currentRespawnPos}");
         }
@@ -146,6 +177,12 @@ public class multiplayerRespawn : NetworkBehaviour
         // SOLO afectamos la pantalla y el sonido si esta es mi propia pantalla
         if (IsOwner)
         {
+            GameObject ambienteObj = GameObject.Find("AudioAmbiente");
+            if (ambienteObj != null)
+            {
+                AudioSource fuenteAudio = ambienteObj.GetComponent<AudioSource>();
+                if (fuenteAudio != null) fuenteAudio.Stop();
+            }
             // Verificamos si existe nuestro Manager en la escena
             if (GameManagerUI.Instance != null)
             {
@@ -153,11 +190,13 @@ public class multiplayerRespawn : NetworkBehaviour
                 {
                     Debug.Log("¡Llegaste a la meta!");
                     GameManagerUI.Instance.MostrarVictoria(); // Llamamos a la UI de la escena
+                    if (sfxVictoria != null) sfxVictoria.Play();
                 }
                 else
                 {
                     Debug.Log($"¡GAME OVER para {gameObject.name}!");
                     GameManagerUI.Instance.MostrarDerrota(); // Llamamos a la UI de la escena
+                    if (sfxDerrota != null) sfxDerrota.Play();
                 }
             }
             else

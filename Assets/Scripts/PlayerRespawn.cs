@@ -145,7 +145,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (textoVidas != null)
         {
-            textoVidas.text = "Vidas: " + vidasActuales;
+            textoVidas.text = "Vida/s: " + vidasActuales;
         }
     }
 
@@ -167,6 +167,8 @@ public class PlayerRespawn : MonoBehaviour
 
         if (panelGameOver != null)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             panelGameOver.SetActive(true);
         }
 
@@ -205,6 +207,8 @@ public class PlayerRespawn : MonoBehaviour
         // Mostramos el panel de victoria
         if (panelVictoria != null)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             panelVictoria.SetActive(true);
         }
 

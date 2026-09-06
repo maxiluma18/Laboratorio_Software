@@ -7,12 +7,7 @@ public class GameManagerUI : MonoBehaviour
 
     [Header("Paneles de UI")]
     public GameObject panelVictoria;
-    public GameObject panelDerrota; // Lo que antes llamabas panelGameOver
-
-    [Header("Audios")]
-    public AudioSource musicaAmbiente;
-    public AudioSource sfxVictoria;
-    public AudioSource sfxDerrota;
+    public GameObject panelDerrota;
 
     private void Awake()
     {
@@ -27,18 +22,18 @@ public class GameManagerUI : MonoBehaviour
         }
     }
 
-    // Funciones que llamará el jugador cuando termine la carrera
+    // Funciones que llamará el jugador (multiplayerRespawn) cuando termine la carrera
     public void MostrarVictoria()
     {
-        if (musicaAmbiente != null) musicaAmbiente.Stop();
-        if (sfxVictoria != null) sfxVictoria.Play();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (panelVictoria != null) panelVictoria.SetActive(true);
     }
 
     public void MostrarDerrota()
     {
-        if (musicaAmbiente != null) musicaAmbiente.Stop();
-        if (sfxDerrota != null) sfxDerrota.Play();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (panelDerrota != null) panelDerrota.SetActive(true);
     }
 }

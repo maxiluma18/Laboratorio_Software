@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class multiplayerController : NetworkBehaviour
 {
@@ -44,7 +45,7 @@ public class multiplayerController : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return; // Si no es tuyo, no se mueve
-
+        if (SceneManager.GetActiveScene().name != "Multiplayer") return;
         bool isGrounded = controller.isGrounded;
         if (isGrounded && verticalVelocity < 0)
         {
