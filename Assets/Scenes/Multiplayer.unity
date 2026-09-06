@@ -1500,9 +1500,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerUI
   panelVictoria: {fileID: 712560694}
   panelDerrota: {fileID: 2045151477}
-  musicaAmbiente: {fileID: 0}
-  sfxVictoria: {fileID: 0}
-  sfxDerrota: {fileID: 0}
 --- !u!4 &149540524
 Transform:
   m_ObjectHideFlags: 0
@@ -4555,7 +4552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 010b0c92295f34b4093296206b8fb1f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c396aa92bbd242e4792e2e3747b4dfcd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7818,7 +7815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.82, y: -460.9}
+  m_AnchoredPosition: {x: 679.65, y: -400.9}
   m_SizeDelta: {x: 331.1, y: 138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400726383
@@ -8146,9 +8143,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 707253535}
+      - m_Target: {fileID: 707253536}
         m_TargetAssemblyTypeName: ControladorPausa, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: BotonSalirAlMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8590,6 +8587,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467207843}
   m_CullTransparentMesh: 1
+--- !u!1001 &1484366982
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3356068317468070022, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_Name
+      value: AudioAmbiente
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.25747
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01576
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.14796
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984312440487462067, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 857f930f96a43ef4d9d0a2922b0f3be8, type: 3}
 --- !u!1 &1509102744
 GameObject:
   m_ObjectHideFlags: 0
@@ -11318,7 +11372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd20fc80e95f7bc43940be6ef59a4b80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e20717b13ce98449928e6f0fef81953, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12124,3 +12178,4 @@ SceneRoots:
   - {fileID: 707253537}
   - {fileID: 274957731}
   - {fileID: 149540524}
+  - {fileID: 1484366982}
