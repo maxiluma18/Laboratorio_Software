@@ -18995,6 +18995,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3572995921224292669, guid: cbd996ac783142a43a6cfeb397cd69af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4174767432939703234, guid: cbd996ac783142a43a6cfeb397cd69af, type: 3}
       propertyPath: m_Name
       value: Player
@@ -19031,6 +19035,10 @@ PrefabInstance:
       propertyPath: currentCheckpoint
       value: 
       objectReference: {fileID: 1936385681}
+    - target: {fileID: 7669741522686072388, guid: cbd996ac783142a43a6cfeb397cd69af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7848311237391608415, guid: cbd996ac783142a43a6cfeb397cd69af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.038
