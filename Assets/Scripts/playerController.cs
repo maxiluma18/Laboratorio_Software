@@ -22,16 +22,16 @@ public class playerController : MonoBehaviour
     void Update()
     {
         bool isGrounded = controller.isGrounded;
-        if(isGrounded && verticalVelocity < 0)
+        if (isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
         }
-        if(jumpPressed && isGrounded)
+        if (jumpPressed && isGrounded)
         {
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpPressed = false;
         }
-        if(!isGrounded)
+        if (!isGrounded)
         {
             jumpPressed = false;
         }
@@ -52,7 +52,7 @@ public class playerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if(value.isPressed)
+        if (value.isPressed)
         {
             jumpPressed = true;
         }
