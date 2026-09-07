@@ -30,7 +30,7 @@ public class multiplayerRespawn : NetworkBehaviour
     // Bandera estática en el servidor para garantizar que solo haya un ganador
     private static bool metaAlcanzadaServidor = false;
 
-    // Usamos OnNetworkSpawn en lugar de Start cuando trabajamos con Netcode
+    // Usamos OnNetworkSpawn en lugar de Start
     public override void OnNetworkSpawn()
     {
         controller = GetComponent<CharacterController>();
@@ -78,7 +78,7 @@ public class multiplayerRespawn : NetworkBehaviour
         if (scene.name == "Multiplayer" && IsOwner)
         {
             controller.enabled = false;
-            transform.position = currentRespawnPos; // Lo ubicamos en su carril
+            transform.position = currentRespawnPos; // Lo ubicamos en su checkpoint
             controller.enabled = true; // Reactivamos físicas
         }
     }
@@ -109,7 +109,6 @@ public class multiplayerRespawn : NetworkBehaviour
         controller.enabled = true;
         if (sfxMuerte != null) sfxMuerte.Play();
 
-        Debug.Log($"Reapareciendo en la posición {currentRespawnPos}");
     }
 
     // Detectamos cuando el jugador pisa un nuevo checkpoint o una trampa (si es Trigger)
@@ -121,14 +120,13 @@ public class multiplayerRespawn : NetworkBehaviour
         {
             currentRespawnPos = other.transform.position + new Vector3(miOffsetEnX, 2f, 0f);
 
-            Debug.Log($"¡Checkpoint alcanzado! Nueva posición guardada: {currentRespawnPos}");
         }
 
         else if (other.CompareTag("trampa"))
         {
             Respawn();
         }
-        else if (other.CompareTag("meta")) // CA 1: Detecta el trigger
+        else if (other.CompareTag("meta")) 
         {
             NotificarMetaServerRpc();
         }
@@ -188,13 +186,11 @@ public class multiplayerRespawn : NetworkBehaviour
             {
                 if (NetworkManager.Singleton.LocalClientId == ganadorId)
                 {
-                    Debug.Log("¡Llegaste a la meta!");
                     GameManagerUI.Instance.MostrarVictoria(); // Llamamos a la UI de la escena
                     if (sfxVictoria != null) sfxVictoria.Play();
                 }
                 else
                 {
-                    Debug.Log($"¡GAME OVER para {gameObject.name}!");
                     GameManagerUI.Instance.MostrarDerrota(); // Llamamos a la UI de la escena
                     if (sfxDerrota != null) sfxDerrota.Play();
                 }

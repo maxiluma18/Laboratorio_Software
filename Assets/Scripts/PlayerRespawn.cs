@@ -52,7 +52,6 @@ public class PlayerRespawn : MonoBehaviour
         {
             // En multijugador, las vidas son infinitas
             if (textoVidas != null) textoVidas.text = "Vidas: ∞";
-            Debug.Log($"{gameObject.name} inicia en modo Multijugador (Vidas Infinitas)");
             return; // Salimos para no aplicar la lógica de dificultad
         }
 
@@ -74,7 +73,6 @@ public class PlayerRespawn : MonoBehaviour
         }
 
         ActualizarTextoVidas();
-        Debug.Log($"{gameObject.name} inicia con {vidasActuales} vidas (Dificultad: {dificultad})");
     }
 
     void Update()
@@ -119,7 +117,7 @@ public class PlayerRespawn : MonoBehaviour
         // Si es multijugador, solo reaparece sin restar vidas
         if (esMultijugador)
         {
-            Debug.Log($"¡{gameObject.name} cayó o tocó una trampa! Reapareciendo (Vidas Infinitas)...");
+            
             if (sfxMuerte != null) sfxMuerte.Play();
             Respawn();
             return;
@@ -127,7 +125,6 @@ public class PlayerRespawn : MonoBehaviour
 
         vidasActuales--;
         ActualizarTextoVidas();
-        Debug.Log($"¡{gameObject.name} perdió una vida! Le quedan {vidasActuales}");
 
         if (vidasActuales > 0)
         {
@@ -154,7 +151,6 @@ public class PlayerRespawn : MonoBehaviour
         if (juegoTerminado) return; // Evita que se ejecute dos veces
 
         juegoTerminado = true;
-        Debug.Log($"¡GAME OVER para {gameObject.name}!");
         if (musicaAmbiente != null) 
         {
             musicaAmbiente.Stop();
@@ -194,7 +190,6 @@ public class PlayerRespawn : MonoBehaviour
     private void Victoria()
     {
         juegoTerminado = true;
-        Debug.Log("¡Llegaste a la meta!");
         if (musicaAmbiente != null) 
         {
             musicaAmbiente.Stop();
@@ -235,7 +230,6 @@ public class PlayerRespawn : MonoBehaviour
 
             transform.position = spawnPos;
             controller.enabled = true;
-            Debug.Log("Reapareciendo separado...");
         }
     }
 }

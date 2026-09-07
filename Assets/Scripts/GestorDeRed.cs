@@ -74,7 +74,6 @@ public class GestorDeRed : MonoBehaviour
         }
         catch (RelayServiceException e)
         {
-            Debug.LogError("Error Relay: " + e.Message);
             menuUI.MostrarCodigoGenerado("Error al crear sala");
         }
     }
@@ -105,7 +104,6 @@ public class GestorDeRed : MonoBehaviour
         }
         catch (RelayServiceException e)
         {
-            Debug.LogError("Error al unirse: " + e.Message);
             menuUI.CambiarTextoEstado("Error al unirse a la sala.");
         }
     }

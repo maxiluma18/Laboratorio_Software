@@ -29,7 +29,6 @@ public class MenuUI : MonoBehaviour
     
     private void Start()
     {
-        Debug.Log("Cerrando el juego...");
         MostrarMenuPrincipal();
         if (txtBotonMute != null)
         {

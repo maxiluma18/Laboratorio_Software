@@ -12,7 +12,6 @@ public class Checkpoint : MonoBehaviour
             {
                 // Guardamos el checkpoint para este jugador en específico
                 respawn.currentCheckpoint = this.transform;
-                Debug.Log("¡Progreso guardado para " + other.gameObject.name + "!");
             }
         }
     }
